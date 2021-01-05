@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		323BE5A925A488D3003FF879 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5A825A488D3003FF879 /* Colors.swift */; };
+		323BE5AC25A48941003FF879 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5AB25A48941003FF879 /* AddViewController.swift */; };
+		323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */; };
 		9513230825711DCF0018DC2C /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513230725711DCF0018DC2C /* TodoItem.swift */; };
 		9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513230A25711F170018DC2C /* TodoItemsViewController.swift */; };
 		951323122571237B0018DC2C /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951323112571237B0018DC2C /* Priority.swift */; };
@@ -31,6 +34,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		323BE5A825A488D3003FF879 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		323BE5AB25A48941003FF879 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableCell.swift; sourceTree = "<group>"; };
 		6DF9F2468D1E02EAE0353443 /* Pods_ABTodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ABTodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A56063F363A9C01EB389A5 /* Pods-ABTodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABTodoList.debug.xcconfig"; path = "Target Support Files/Pods-ABTodoList/Pods-ABTodoList.debug.xcconfig"; sourceTree = "<group>"; };
 		9513230725711DCF0018DC2C /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 				9513230A25711F170018DC2C /* TodoItemsViewController.swift */,
 				9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */,
 				958F791B2581037200CC02E9 /* AddNewItenViewController.swift */,
+				323BE5AB25A48941003FF879 /* AddViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 				954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */,
 				95132319257295C60018DC2C /* DetailToDoCell.swift */,
 				958F7922258196D700CC02E9 /* AddNewItemCell.swift */,
+				323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				95659AC925711B4B006B5FA8 /* Info.plist */,
 				951FD51B25A475E800F4072C /* Constants.swift */,
 				951FD51E25A478F500F4072C /* Strings.swift */,
+				323BE5A825A488D3003FF879 /* Colors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -343,13 +352,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */,
 				9513231A257295C60018DC2C /* DetailToDoCell.swift in Sources */,
+				323BE5A925A488D3003FF879 /* Colors.swift in Sources */,
 				958F792025818BD900CC02E9 /* saveButton.swift in Sources */,
 				9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */,
 				954FC7702576756C00402083 /* Date+Utils.swift in Sources */,
 				954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */,
 				958F7923258196D700CC02E9 /* AddNewItemCell.swift in Sources */,
 				954C8FD8257E5D8700A258F2 /* ToDoItemTableCell.swift in Sources */,
+				323BE5AC25A48941003FF879 /* AddViewController.swift in Sources */,
 				951FD51C25A475E800F4072C /* Constants.swift in Sources */,
 				954C8FDD257F0B0B00A258F2 /* Color Ext.swift in Sources */,
 				9513231725728D670018DC2C /* ToDoItemDetailsViewController.swift in Sources */,

@@ -48,14 +48,14 @@ class TodoItemsViewController: UITableViewController {
     
     // MARK: - NAVIGATION BAR
     fileprivate func setupNavigationBar(){
-        let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemFunction))
+        let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddNewItemButton))
         self.navigationItem.rightBarButtonItem = addNewItemButton
         
     }
     
-    @objc func addItemFunction(){
-        let viewController = AddNewItemViewController() // для чого цей рядок якщо можна вставити назву конроллера зразу в наступний рядок ?
-        self.navigationController?.pushViewController(viewController, animated: true)
+    @objc func onAddNewItemButton(){
+        let navigationController = UINavigationController(rootViewController: AddViewController(style: .insetGrouped))
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     // MARK: - DATA
