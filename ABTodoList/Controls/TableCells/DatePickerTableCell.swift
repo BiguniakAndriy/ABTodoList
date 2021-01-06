@@ -9,8 +9,9 @@ import UIKit
 
 class DatePickerTableCell: UITableViewCell {
     
-    fileprivate let datePicker = UIDatePicker()
-    fileprivate let label = UILabel()
+    let datePicker = UIDatePicker()
+    let label = UILabel()
+    
     fileprivate var date = Date()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,8 +26,8 @@ class DatePickerTableCell: UITableViewCell {
         
     // MARK: - UI
     fileprivate func setupCell(){
-        addSubview(label)
-        addSubview(datePicker)
+        contentView.addSubview(label)
+        contentView.addSubview(datePicker)
         configControls()
     }
     
@@ -34,17 +35,19 @@ class DatePickerTableCell: UITableViewCell {
     // MARK: - Constraints
     fileprivate func setupConstraints(){
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding).isActive = true
-        
-            // priority does not working
-//        datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding).priority = UILayoutPriority(999)
-//        datePicker.leadingAnchor.constraint(greaterThanOrEqualTo: label.trailingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-//        datePicker.leadingAnchor.constraint(greaterThanOrEqualTo: label.trailingAnchor, constant: Constants.Paddings.hPadding).priority = UILayoutPriority(500)
+
+        let datePickerLeftConstraint = label.rightAnchor.constraint(greaterThanOrEqualTo: datePicker.leftAnchor, constant: -Constants.Paddings.hPadding)
+        datePickerLeftConstraint.priority = UILayoutPriority(rawValue: 100)
+
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
+            datePickerLeftConstraint,
+            
+            datePicker.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            datePicker.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Constants.Paddings.hPadding)
+        ])
     }
     
     fileprivate func configControls(){
@@ -53,5 +56,6 @@ class DatePickerTableCell: UITableViewCell {
         
         datePicker.datePickerMode = .dateAndTime
         datePicker.calendar = .current
+        datePicker.backgroundColor = .yellow
     }
 }

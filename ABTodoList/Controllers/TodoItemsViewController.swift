@@ -9,9 +9,6 @@ import UIKit
 
 class TodoItemsViewController: UITableViewController {
     // MARK: - VARS
-    private var items = [TodoItem]()
-    private var uniqueDatesArray = [Date]()
-    private var sectionsOfItems = [[TodoItem]]()
     private var sectionDates = [Date]()
     private var datesWithItems = [Date: [TodoItem] ]()
     
@@ -30,14 +27,11 @@ class TodoItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.items = generateTestData()
-        self.uniqueDatesArray = uniqueDatesChecking(in: items)
-        self.sectionsOfItems = createSectionsOfItems(from: items)
         processItems()
-        self.setupUI()
+        setupUI()
         setupNavigationBar()
-        self.title = "ToDoItems List"
         
+        title = "ToDo Items"
     }
     
     // MARK: - UI
@@ -81,45 +75,10 @@ class TodoItemsViewController: UITableViewController {
         }
         return items
     }
-    
-    fileprivate func uniqueDatesChecking(in data: [TodoItem]) -> [Date] {
-        guard data.count > 0 else {
-            return [Date]()
-        }
-        guard data.first?.date.onlyDate != nil else { return [Date]() }
-        
-        // everything is fine
-        var uniqueDates = [Date]()
-        
-        uniqueDates.append((data.first?.date.onlyDate)!)
-        var checkDate = data.first?.date.onlyDate
-        for item in data {
 
-            if item.date.onlyDate != checkDate {
-                if !uniqueDates.contains(item.date.onlyDate) {
-                    uniqueDates.append(item.date.onlyDate)
-                    checkDate = item.date.onlyDate
-                }
-            }
-        }
-        uniqueDates = uniqueDates.sorted()
-        return uniqueDates
-    }
-    
-    fileprivate func createSectionsOfItems(from array: [TodoItem]) -> [[TodoItem]] {
-        var sections = [[TodoItem]](repeating: [], count: uniqueDatesArray.count) // ?
-        for item in uniqueDatesArray {
-            for toDoItem in array {
-                if toDoItem.date.onlyDate == item {
-                    sections[uniqueDatesArray.firstIndex(of: item)!].append(toDoItem)
-                }
-            }
-        }
-        return sections
-    }
-    
+    // MARK: - TEMP GENERATE DATA
     fileprivate func processItems() {
-        for item in self.items {
+        for item in self.generateTestData() {
             let date = Calendar.current.startOfDay(for: item.date)
             
             if self.sectionDates.contains(date) {
@@ -166,7 +125,7 @@ extension TodoItemsViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return uniqueDatesArray[section].getDateInString()
+        return sectionDates[section].getDateInString()
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -212,23 +171,26 @@ extension TodoItemsViewController {
         let viewController = ToDoItemDetailsViewController()
         viewController.item = items[indexPath.row]
         self.navigationController?.pushViewController(viewController, animated: true)
-        navigationController?.title = "ToDoItem Information"
     }
     
     // MARK: -  Delete action
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteSwipeAction = deleteItem(tableView: tableView, indexPath: indexPath)
+        let deleteSwipeAction = deleteItem(at: indexPath)
         return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
     }
     //delete func
-    func deleteItem (tableView: UITableView, indexPath: IndexPath) -> UIContextualAction {
+    func deleteItem (at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-            self.sectionsOfItems[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if var items = self.datesWithItems[self.sectionDates[indexPath.section]]  {
+                items.remove(at: indexPath.row)
+
+                self.datesWithItems[self.sectionDates[indexPath.section]] = items
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
             completion(true)
         }
         action.image = UIImage(systemName: "trash.fill")
-        tableView.reloadData()
         return action
     }
 }

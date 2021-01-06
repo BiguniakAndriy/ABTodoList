@@ -32,9 +32,10 @@ class ToDoItemDetailsViewController: UIViewController {
     
     // MARK: - Setup navigationBar - не можу достукатися
     fileprivate func setupNavigationBar(){
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deleteItem))
-        self.navigationItem.backBarButtonItem?.title = nil
-        self.navigationItem.leftBarButtonItem?.title = nil
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deleteItem))
+//        self.navigationItem.backBarButtonItem?.title = nil
+//        self.navigationItem.leftBarButtonItem?.title = nil
+        navigationController?.navigationBar.topItem?.title = ""
     }
     
     // MARK: - Actions

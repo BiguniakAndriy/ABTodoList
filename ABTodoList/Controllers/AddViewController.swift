@@ -63,13 +63,21 @@ class AddViewController: UITableViewController {
         self.itemData.name = sender.text
     }
 
+    @objc fileprivate func onDatePickerChanged(_ sender: UIDatePicker) {
+        print(sender.date)
+    }
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        switch section {
+        case 0: return 1
+        case 1: return 3
+        default: return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -77,22 +85,29 @@ class AddViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableCell", for: indexPath) as! TextFieldTableCell
             cell.textField.placeholder = "Name"
             cell.textField.addTarget(self, action: #selector(self.onNameTextFieldChanged(_:)), for: .editingChanged)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableCell", for: indexPath) as! DatePickerTableCell
-            // не можу достукаись до cell.datepicker
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
-            return cell
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableCell", for: indexPath) as! DatePickerTableCell
+                cell.datePicker.addTarget(self, action: #selector(self.onDatePickerChanged(_:)), for: .valueChanged)
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
+                return cell
+            default: break
+            }
+        default: break
         }
+        
+        return UITableViewCell()
     }
 }
