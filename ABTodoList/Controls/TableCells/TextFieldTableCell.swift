@@ -21,7 +21,6 @@ class TextFieldTableCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.setupViews()
     }
     
@@ -32,7 +31,6 @@ class TextFieldTableCell: UITableViewCell {
     //MARK: - UI
     fileprivate func setupViews() {
         contentView.addSubview(textField)
-
         self.setupConstraints()
     }
     

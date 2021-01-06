@@ -50,7 +50,6 @@ class TodoItemsViewController: UITableViewController {
     fileprivate func setupNavigationBar(){
         let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddNewItemButton))
         self.navigationItem.rightBarButtonItem = addNewItemButton
-        
     }
     
     @objc func onAddNewItemButton(){
@@ -59,6 +58,15 @@ class TodoItemsViewController: UITableViewController {
     }
     
     // MARK: - DATA
+    
+    /*
+     1. Задачі генеруються і зберігаються в масив - items
+     2. Вибираються унікальні дати і зберігаються в масив - uniqueDatesArray
+     3. Створюється масив з масивами задач, розділених по даті - sectionsOfItems
+     4.
+     
+     */
+    
     fileprivate func generateTestData() -> [TodoItem] {
         var items = [TodoItem]()
         let colors: [UIColor?] = [.red, .green, .blue, .purple, .yellow, nil]
@@ -72,19 +80,6 @@ class TodoItemsViewController: UITableViewController {
             ))
         }
         return items
-    }
-    
-    fileprivate func processItems() {
-        for item in self.items {
-            let date = Calendar.current.startOfDay(for: item.date)
-            
-            if self.sectionDates.contains(date) {
-                self.datesWithItems[date]?.append(item)
-            } else {
-                self.sectionDates.append(date)
-                self.datesWithItems[date] = [ item ]
-            }
-        }
     }
     
     fileprivate func uniqueDatesChecking(in data: [TodoItem]) -> [Date] {
@@ -110,15 +105,30 @@ class TodoItemsViewController: UITableViewController {
         uniqueDates = uniqueDates.sorted()
         return uniqueDates
     }
-
+    
     fileprivate func createSectionsOfItems(from array: [TodoItem]) -> [[TodoItem]] {
-        var sections = [[TodoItem]](repeating: [], count: uniqueDatesArray.count)
+        var sections = [[TodoItem]](repeating: [], count: uniqueDatesArray.count) // ?
         for item in uniqueDatesArray {
             for toDoItem in array {
-                if toDoItem.date.onlyDate == item { sections[uniqueDatesArray.firstIndex(of: item)!].append(toDoItem) }
+                if toDoItem.date.onlyDate == item {
+                    sections[uniqueDatesArray.firstIndex(of: item)!].append(toDoItem)
+                }
             }
         }
         return sections
+    }
+    
+    fileprivate func processItems() {
+        for item in self.items {
+            let date = Calendar.current.startOfDay(for: item.date)
+            
+            if self.sectionDates.contains(date) {
+                self.datesWithItems[date]?.append(item)
+            } else {
+                self.sectionDates.append(date)
+                self.datesWithItems[date] = [ item ]
+            }
+        }
     }
     
     // MARK: - HELPERS
@@ -139,9 +149,7 @@ class TodoItemsViewController: UITableViewController {
         items[indexPath.row] = item
         self.datesWithItems[date] = items
         self.tableView.reloadRows(at: [indexPath], with: .automatic)
-
     }
-    
 } //class end
 
 // MARK: - Table view data source
@@ -205,6 +213,23 @@ extension TodoItemsViewController {
         viewController.item = items[indexPath.row]
         self.navigationController?.pushViewController(viewController, animated: true)
         navigationController?.title = "ToDoItem Information"
+    }
+    
+    // MARK: -  Delete action
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteSwipeAction = deleteItem(tableView: tableView, indexPath: indexPath)
+        return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
+    }
+    //delete func
+    func deleteItem (tableView: UITableView, indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.sectionsOfItems[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.image = UIImage(systemName: "trash.fill")
+        tableView.reloadData()
+        return action
     }
 }
 

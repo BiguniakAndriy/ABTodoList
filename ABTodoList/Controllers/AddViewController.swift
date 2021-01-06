@@ -19,7 +19,6 @@ class AddViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         setupUI()
         setupData()
@@ -27,8 +26,10 @@ class AddViewController: UITableViewController {
     
     // MARK: - UI
     fileprivate func setupUI() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(TextFieldTableCell.self, forCellReuseIdentifier: "TextFieldTableCell")
+        tableView.register(DatePickerTableCell.self, forCellReuseIdentifier: "DatePickerTableCell")
+        tableView.register(ColorPickerTableCell.self, forCellReuseIdentifier: "ColorPickerTableCell")
+        tableView.register(SetPriorityTableCell.self, forCellReuseIdentifier: "SetPriorityTableCell")
     }
 
     fileprivate func setupNavigationBar() {
@@ -69,10 +70,7 @@ class AddViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 1
-        default: return 0
-        }
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,10 +84,15 @@ class AddViewController: UITableViewController {
             cell.textField.placeholder = "Name"
             cell.textField.addTarget(self, action: #selector(self.onNameTextFieldChanged(_:)), for: .editingChanged)
             return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableCell", for: indexPath) as! DatePickerTableCell
+            // не можу достукаись до cell.datepicker
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
+            return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-            cell.textLabel?.text = "Cell \(indexPath.row)"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
             return cell
         }
     }

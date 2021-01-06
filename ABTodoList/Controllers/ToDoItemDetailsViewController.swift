@@ -14,21 +14,52 @@ class ToDoItemDetailsViewController: UIViewController {
     fileprivate var imageForName = UIImageView()
     fileprivate var nameLabel = UILabel()
     fileprivate var tableView = UITableView()
-    fileprivate let outPadding : CGFloat = 20
-    fileprivate let inPadding : CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Details"
         view.backgroundColor = .systemGray5
+      
+        setupData()
+        setupUX()
+        setupControls()
+    }
+    
+    
+    // MARK: - Data
+    fileprivate func setupData(){
+        self.title = "Details"
+    }
+    
+    // MARK: - Setup navigationBar - не можу достукатися
+    fileprivate func setupNavigationBar(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deleteItem))
+        self.navigationItem.backBarButtonItem?.title = nil
+        self.navigationItem.leftBarButtonItem?.title = nil
+    }
+    
+    // MARK: - Actions
+    @objc fileprivate func deleteItem() {
+        // видалити обєкт з масиву - як знайти в масиві це обєкт ?
+        // перейти в перший вюконтроллер
+        self.navigationController?.popViewController(animated: true)
+        // перезагрузити таблицю головного вікна
+        let viewController = TodoItemsViewController()
+        viewController.tableView.reloadData()
+    }
+    
+    // MARK: - UX
+    fileprivate func setupUX(){
         view.addSubview(imageForName)
         view.addSubview(nameLabel)
         view.addSubview(tableView)
+    }
+    
+    //MARK: - Controls
+    fileprivate func setupControls(){
         configImageForName()
         configNameLabel()
         configureTableView()
     }
-
     
     fileprivate func configImageForName(){
         imageForName.image = UIImage(systemName: "wallet.pass.fill")
@@ -38,7 +69,7 @@ class ToDoItemDetailsViewController: UIViewController {
         imageForName.heightAnchor.constraint(equalToConstant: 70 ).isActive = true
         imageForName.widthAnchor.constraint(equalTo: imageForName.heightAnchor).isActive = true
         imageForName.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
-        imageForName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: outPadding).isActive = true
+        imageForName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
     }
     
     fileprivate func configNameLabel(){
@@ -50,8 +81,8 @@ class ToDoItemDetailsViewController: UIViewController {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: imageForName.topAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: imageForName.trailingAnchor, constant: inPadding).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -outPadding).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: imageForName.trailingAnchor, constant: Constants.Paddings.hPadding).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.Paddings.hPadding).isActive = true
         nameLabel.bottomAnchor.constraint(equalTo: imageForName.bottomAnchor).isActive = true
     }
     
@@ -64,13 +95,12 @@ class ToDoItemDetailsViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        tableView.topAnchor.constraint(equalTo: imageForName.bottomAnchor, constant: outPadding).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: outPadding).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -outPadding).isActive = true
+        tableView.topAnchor.constraint(equalTo: imageForName.bottomAnchor, constant: Constants.Paddings.hPadding).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.Paddings.hPadding).isActive = true
     }
     
 } // class end
-
 
 extension ToDoItemDetailsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,3 +119,5 @@ extension ToDoItemDetailsViewController : UITableViewDelegate, UITableViewDataSo
     
     
 }
+
+

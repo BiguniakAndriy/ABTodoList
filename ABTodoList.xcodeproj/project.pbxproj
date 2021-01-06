@@ -17,6 +17,9 @@
 		9513231A257295C60018DC2C /* DetailToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95132319257295C60018DC2C /* DetailToDoCell.swift */; };
 		951FD51C25A475E800F4072C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51B25A475E800F4072C /* Constants.swift */; };
 		951FD51F25A478F500F4072C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51E25A478F500F4072C /* Strings.swift */; };
+		951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */; };
+		951FD52B25A49D8F00F4072C /* ColorPickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */; };
+		951FD52E25A49DAE00F4072C /* SetPriorityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */; };
 		954C8FD8257E5D8700A258F2 /* ToDoItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */; };
 		954C8FDD257F0B0B00A258F2 /* Color Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDC257F0B0B00A258F2 /* Color Ext.swift */; };
 		954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */; };
@@ -26,7 +29,6 @@
 		95659AC325711B4A006B5FA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC125711B4A006B5FA8 /* Main.storyboard */; };
 		95659AC525711B4B006B5FA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC425711B4B006B5FA8 /* Assets.xcassets */; };
 		95659AC825711B4B006B5FA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC625711B4B006B5FA8 /* LaunchScreen.storyboard */; };
-		958F791C2581037200CC02E9 /* AddNewItenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F791B2581037200CC02E9 /* AddNewItenViewController.swift */; };
 		958F792025818BD900CC02E9 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F791F25818BD900CC02E9 /* saveButton.swift */; };
 		958F7923258196D700CC02E9 /* AddNewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F7922258196D700CC02E9 /* AddNewItemCell.swift */; };
 		958F792725828F0500CC02E9 /* Text Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F792625828F0500CC02E9 /* Text Ext.swift */; };
@@ -46,6 +48,9 @@
 		95132319257295C60018DC2C /* DetailToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToDoCell.swift; sourceTree = "<group>"; };
 		951FD51B25A475E800F4072C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		951FD51E25A478F500F4072C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableCell.swift; sourceTree = "<group>"; };
+		951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerTableCell.swift; sourceTree = "<group>"; };
+		951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriorityTableCell.swift; sourceTree = "<group>"; };
 		954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTableCell.swift; sourceTree = "<group>"; };
 		954C8FDC257F0B0B00A258F2 /* Color Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color Ext.swift"; sourceTree = "<group>"; };
 		954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithAction.swift; sourceTree = "<group>"; };
@@ -57,7 +62,6 @@
 		95659AC425711B4B006B5FA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95659AC725711B4B006B5FA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95659AC925711B4B006B5FA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		958F791B2581037200CC02E9 /* AddNewItenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItenViewController.swift; sourceTree = "<group>"; };
 		958F791F25818BD900CC02E9 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
 		958F7922258196D700CC02E9 /* AddNewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemCell.swift; sourceTree = "<group>"; };
 		958F792625828F0500CC02E9 /* Text Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text Ext.swift"; sourceTree = "<group>"; };
@@ -106,7 +110,6 @@
 			children = (
 				9513230A25711F170018DC2C /* TodoItemsViewController.swift */,
 				9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */,
-				958F791B2581037200CC02E9 /* AddNewItenViewController.swift */,
 				323BE5AB25A48941003FF879 /* AddViewController.swift */,
 			);
 			path = Controllers;
@@ -154,6 +157,9 @@
 				95132319257295C60018DC2C /* DetailToDoCell.swift */,
 				958F7922258196D700CC02E9 /* AddNewItemCell.swift */,
 				323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */,
+				951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */,
+				951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */,
+				951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -352,11 +358,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951FD52E25A49DAE00F4072C /* SetPriorityTableCell.swift in Sources */,
 				323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */,
 				9513231A257295C60018DC2C /* DetailToDoCell.swift in Sources */,
 				323BE5A925A488D3003FF879 /* Colors.swift in Sources */,
 				958F792025818BD900CC02E9 /* saveButton.swift in Sources */,
 				9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */,
+				951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */,
 				954FC7702576756C00402083 /* Date+Utils.swift in Sources */,
 				954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */,
 				958F7923258196D700CC02E9 /* AddNewItemCell.swift in Sources */,
@@ -368,10 +376,10 @@
 				95659ABC25711B4A006B5FA8 /* AppDelegate.swift in Sources */,
 				9513230825711DCF0018DC2C /* TodoItem.swift in Sources */,
 				951FD51F25A478F500F4072C /* Strings.swift in Sources */,
+				951FD52B25A49D8F00F4072C /* ColorPickerTableCell.swift in Sources */,
 				951323122571237B0018DC2C /* Priority.swift in Sources */,
 				95659ABE25711B4A006B5FA8 /* SceneDelegate.swift in Sources */,
 				958F792725828F0500CC02E9 /* Text Ext.swift in Sources */,
-				958F791C2581037200CC02E9 /* AddNewItenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
