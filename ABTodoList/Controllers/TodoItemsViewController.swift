@@ -48,7 +48,10 @@ class TodoItemsViewController: UITableViewController {
     }
     
     @objc func onAddNewItemButton(){
-        let navigationController = UINavigationController(rootViewController: AddViewController(style: .insetGrouped))
+        let viewController = AddViewController(style: .insetGrouped)
+        viewController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
         self.present(navigationController, animated: true, completion: nil)
     }
     
@@ -70,23 +73,40 @@ class TodoItemsViewController: UITableViewController {
     // MARK: - TEMP GENERATE DATA
     fileprivate func processItems() {
         for item in self.generateTestData() {
-            let date = Calendar.current.startOfDay(for: item.date)
-            
-            if self.sectionDates.contains(date) {
-                self.datesWithItems[date]?.append(item)
-            } else {
-                self.sectionDates.append(date)
-                self.datesWithItems[date] = [ item ]
-            }
+            appendDataItem(item)
+        }
+        
+        self.sectionDates.sort()
+    }
+
+    fileprivate func appendDataItem(_ item: TodoItem) {
+        let date = Calendar.current.startOfDay(for: item.date)
+        
+        if self.sectionDates.contains(date) {
+            self.datesWithItems[date]?.append(item)
+        } else {
+            self.sectionDates.append(date)
+            self.datesWithItems[date] = [ item ]
         }
     }
-    
     // MARK: - HELPERS
     fileprivate func getTimeFrom(date: Date) -> String? {
         return self.timeFormatter.string(from: date)
     }
     fileprivate func getDayFrom(date: Date) -> String? {
         return self.dateFormatter.string(from: date)
+    }
+    
+    fileprivate func getSectionHeaderTitle(_ section: Int) -> String? {
+        let date = sectionDates[section]
+        
+        if Calendar.current.isDateInToday(date) {
+            return "Today"
+        } else if Calendar.current.isDateInTomorrow(date) {
+            return "Tomorrow"
+        }
+        
+        return date.getDateInString()
     }
     
     // MARK: - ACTIONS
@@ -116,7 +136,7 @@ extension TodoItemsViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionDates[section].getDateInString()
+        return getSectionHeaderTitle(section)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -186,8 +206,17 @@ extension TodoItemsViewController {
     }
 }
 
+// MARK: - AddViewControllerDelegate
+extension TodoItemsViewController: AddViewControllerDelegate {
+    func addViewControllerDismissedWithItem(_ item: TodoItem) {
+        appendDataItem(item)
+
+        tableView.reloadData()
+    }
+}
 
 
-
-
-
+// 1 Добавление item через tableView.insertRows(at)
+// 2 Удаление item'a из details view. (протокол, делагат, удаление из таблица)
+// 3 Разобраться с UIAlertController
+// 4 Сортировать items внутри секции.

@@ -9,10 +9,10 @@ import UIKit
 
 class ColorPickerTableCell: UITableViewCell {
     
-    var selectedColor : UIColor? = nil
+    var selectedColor : UIColor?
     
     let label = UILabel()
-    var button = UIButton(type: .system)
+    let button = UIButton(type: .system)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,8 +28,8 @@ class ColorPickerTableCell: UITableViewCell {
     
     // MARK: - UI
     fileprivate func setupCell(){
-        addSubview(label)
-        addSubview(button)
+        contentView.addSubview(label)
+        contentView.addSubview(button)
         configControls()
     }
     
@@ -39,13 +39,13 @@ class ColorPickerTableCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
             
-            button.centerYAnchor.constraint(equalTo: centerYAnchor),
-            button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1),
-            button.leadingAnchor.constraint(equalTo: centerXAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding)
+            button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            button.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
+            button.leadingAnchor.constraint(equalTo: contentView.centerXAnchor),
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Paddings.hPadding)
         ])
     }
     

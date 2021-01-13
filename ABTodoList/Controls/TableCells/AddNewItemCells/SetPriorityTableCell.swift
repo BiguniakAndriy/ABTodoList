@@ -26,8 +26,8 @@ class SetPriorityTableCell: UITableViewCell {
     
     // MARK: - UI
     fileprivate func setupCell(){
-        addSubview(label)
-        addSubview(slider)
+        contentView.addSubview(label)
+        contentView.addSubview(slider)
         configControls()
     }
     
@@ -37,12 +37,12 @@ class SetPriorityTableCell: UITableViewCell {
         slider.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
             
-            slider.centerYAnchor.constraint(equalTo: centerYAnchor),
-            slider.leadingAnchor.constraint(equalTo: centerXAnchor),
-            slider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding)
+            slider.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            slider.leadingAnchor.constraint(equalTo: contentView.centerXAnchor),
+            slider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Paddings.hPadding)
         ])
     }
     
@@ -51,7 +51,7 @@ class SetPriorityTableCell: UITableViewCell {
         label.text = "Priority"
         label.font = .systemFont(ofSize: 18, weight: .medium)
         
-        slider.value = 1
+        slider.value = 3
         slider.maximumValue = 5
         slider.minimumValue = 1
     }

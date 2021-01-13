@@ -7,16 +7,46 @@
 
 import UIKit
 
+protocol AddViewControllerDelegate: class {
+    func addViewControllerDismissedWithItem(_ item: TodoItem)
+}
+
 class AddViewController: UITableViewController {
     struct TodoItemData {
         var name : String?
+        var description : String?
         var date : Date = Date()
-        var color : UIColor?
+        var color : UIColor? = .red
         var priority : Priority = .normal
+        
+        var isFilled: Bool {
+            return
+                (name != nil && !name!.isEmpty) //&&
+//                (description != nil && !description!.isEmpty)
+        }
+        
+        
+        func validateErrors() -> [String]? {
+            if isFilled { return nil }
+            
+            var errors = [String]()
+            
+            if name == nil || name!.isEmpty {
+                errors.append("Please provide ToDo Item name!")
+            }
+            
+//            if description == nil || description!.isEmpty {
+//                errors.append("Please provide ToDo Item description!")
+//            }
+            
+            return errors
+        }
     }
 
     fileprivate var itemData = TodoItemData()
 
+    weak var delegate: AddViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
@@ -50,14 +80,20 @@ class AddViewController: UITableViewController {
     }
     
     @objc fileprivate func onSaveButton() {
-//        let item = TodoItemData(
-//        name: itemData.name,
-//        date: itemData.date,
-//        color: <#T##UIColor?#>,
-//        priority: itemData.priority
-//        )
+        if let errors = itemData.validateErrors() {
+            showErrorAlert(message: errors.first)
+            return
+        }
         
-        self.dismiss(animated: true, completion: nil)
+        let item = TodoItem(name: itemData.name!,
+                            date: itemData.date,
+                            color: itemData.color,
+                            priority: itemData.priority,
+                            complete: false)
+        
+        self.dismiss(animated: true, completion: {
+            self.delegate?.addViewControllerDismissedWithItem(item)
+        })
     }
     
     @objc fileprivate func onNameTextFieldChanged(_ sender: UITextField) {
@@ -65,7 +101,7 @@ class AddViewController: UITableViewController {
     }
 
     @objc fileprivate func onDatePickerChanged(_ sender: UIDatePicker) {
-        print(sender.date)
+        itemData.date = sender.date
     }
     
     @objc fileprivate func onSelectColorButton(_ sender: UIButton) {
@@ -73,11 +109,19 @@ class AddViewController: UITableViewController {
         print("button works !")
     }
     
-    @objc fileprivate func sliderChangeValue(_ sender: UISlider) {
+    @objc fileprivate func onPriorirySliderChanged(_ sender: UISlider) {
         self.itemData.priority = Priority(rawValue: Int(sender.value)) ?? Priority.normal
         print("slider works, value - \(sender.value)")
     }
 
+    // MARK: - HELPERS
+    fileprivate func showErrorAlert(message: String?) {
+        let _message = message ?? "Something went wrong"
+        print(_message)
+        //_message
+        //
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -114,7 +158,7 @@ class AddViewController: UITableViewController {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
-                cell.slider.addTarget(self, action: #selector(self.sliderChangeValue(_:)), for: .valueChanged)
+                cell.slider.addTarget(self, action: #selector(self.onPriorirySliderChanged(_:)), for: .valueChanged)
                 return cell
             default: break
             }
