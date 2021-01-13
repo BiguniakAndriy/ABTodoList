@@ -156,10 +156,7 @@
 				954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */,
 				95132319257295C60018DC2C /* DetailToDoCell.swift */,
 				958F7922258196D700CC02E9 /* AddNewItemCell.swift */,
-				323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */,
-				951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */,
-				951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */,
-				951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */,
+				95F713C025A6646C008A1FA8 /* AddNewItemCells */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -242,6 +239,17 @@
 				954FC77B2577B98000402083 /* Resources */,
 			);
 			path = ABTodoList;
+			sourceTree = "<group>";
+		};
+		95F713C025A6646C008A1FA8 /* AddNewItemCells */ = {
+			isa = PBXGroup;
+			children = (
+				323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */,
+				951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */,
+				951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */,
+				951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */,
+			);
+			path = AddNewItemCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

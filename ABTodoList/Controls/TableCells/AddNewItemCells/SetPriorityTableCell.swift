@@ -9,8 +9,8 @@ import UIKit
 
 class SetPriorityTableCell: UITableViewCell {
 
-    fileprivate let label = UILabel()
-    fileprivate var slider = UISlider()
+    let label = UILabel()
+    var slider = UISlider()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,13 +34,16 @@ class SetPriorityTableCell: UITableViewCell {
     // MARK: - Constraints
     fileprivate func setupConstraints(){
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        slider.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        slider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding).isActive = true
+        
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding),
+            
+            slider.centerYAnchor.constraint(equalTo: centerYAnchor),
+            slider.leadingAnchor.constraint(equalTo: centerXAnchor),
+            slider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding)
+        ])
     }
     
     // MARK: Controls

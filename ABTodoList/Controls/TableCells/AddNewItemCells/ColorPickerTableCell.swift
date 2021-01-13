@@ -9,9 +9,10 @@ import UIKit
 
 class ColorPickerTableCell: UITableViewCell {
     
-    fileprivate let label = UILabel()
-    fileprivate var button = UIButton(type: .system)
-    fileprivate var selectedColor : UIColor? = nil
+    var selectedColor : UIColor? = nil
+    
+    let label = UILabel()
+    var button = UIButton(type: .system)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,20 +36,24 @@ class ColorPickerTableCell: UITableViewCell {
     // MARK: - Constraints
     fileprivate func setupConstraints(){
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-        button.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding).isActive = true
+        
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding),
+            
+            button.centerYAnchor.constraint(equalTo: centerYAnchor),
+            button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1),
+            button.leadingAnchor.constraint(equalTo: centerXAnchor),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Paddings.hPadding)
+        ])
     }
     
     // MARK: Controls
     fileprivate func configControls(){
         label.text = "Color"
         label.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .yellow
         
         if selectedColor == nil {
             button.setTitle("Tap to select", for: .normal)

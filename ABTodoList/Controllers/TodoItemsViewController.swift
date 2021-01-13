@@ -44,22 +44,13 @@ class TodoItemsViewController: UITableViewController {
     fileprivate func setupNavigationBar(){
         let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddNewItemButton))
         self.navigationItem.rightBarButtonItem = addNewItemButton
+        navigationItem.backButtonTitle = ""
     }
     
     @objc func onAddNewItemButton(){
         let navigationController = UINavigationController(rootViewController: AddViewController(style: .insetGrouped))
         self.present(navigationController, animated: true, completion: nil)
     }
-    
-    // MARK: - DATA
-    
-    /*
-     1. Задачі генеруються і зберігаються в масив - items
-     2. Вибираються унікальні дати і зберігаються в масив - uniqueDatesArray
-     3. Створюється масив з масивами задач, розділених по даті - sectionsOfItems
-     4.
-     
-     */
     
     fileprivate func generateTestData() -> [TodoItem] {
         var items = [TodoItem]()

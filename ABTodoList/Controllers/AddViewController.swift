@@ -19,6 +19,7 @@ class AddViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.allowsSelection = false
         setupNavigationBar()
         setupUI()
         setupData()
@@ -47,15 +48,15 @@ class AddViewController: UITableViewController {
     @objc fileprivate func onCancelButton() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @objc fileprivate func onSaveButton() {
 //        let item = TodoItemData(
-//            name: itemData.name,
-//            date: itemData.date,
-//            color: <#T##UIColor?#>,
-//            priority: <#T##Priority#>
+//        name: itemData.name,
+//        date: itemData.date,
+//        color: <#T##UIColor?#>,
+//        priority: itemData.priority
 //        )
         
-        //
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -65,6 +66,16 @@ class AddViewController: UITableViewController {
 
     @objc fileprivate func onDatePickerChanged(_ sender: UIDatePicker) {
         print(sender.date)
+    }
+    
+    @objc fileprivate func onSelectColorButton(_ sender: UIButton) {
+        sender.backgroundColor = .red
+        print("button works !")
+    }
+    
+    @objc fileprivate func sliderChangeValue(_ sender: UISlider) {
+        self.itemData.priority = Priority(rawValue: Int(sender.value)) ?? Priority.normal
+        print("slider works, value - \(sender.value)")
     }
 
     // MARK: - Table view data source
@@ -99,9 +110,11 @@ class AddViewController: UITableViewController {
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
+                cell.button.addTarget(self, action: #selector(self.onSelectColorButton(_:)), for: .touchUpInside)
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
+                cell.slider.addTarget(self, action: #selector(self.sliderChangeValue(_:)), for: .valueChanged)
                 return cell
             default: break
             }

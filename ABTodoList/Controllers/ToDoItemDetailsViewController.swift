@@ -10,42 +10,30 @@ import UIKit
 class ToDoItemDetailsViewController: UIViewController {
     var item: TodoItem!
     
-    fileprivate var labelView = UIView()
-    fileprivate var imageForName = UIImageView()
-    fileprivate var nameLabel = UILabel()
-    fileprivate var tableView = UITableView()
+    var labelView = UIView()
+    var imageForName = UIImageView()
+    var nameLabel = UILabel()
+    var tableView = UITableView()
+    var deleteButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray5
-      
+        self.view.backgroundColor = .systemGray5
+        
         setupData()
         setupUX()
         setupControls()
+        setupConstraints()
     }
-    
     
     // MARK: - Data
     fileprivate func setupData(){
         self.title = "Details"
     }
     
-    // MARK: - Setup navigationBar - не можу достукатися
-    fileprivate func setupNavigationBar(){
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deleteItem))
-//        self.navigationItem.backBarButtonItem?.title = nil
-//        self.navigationItem.leftBarButtonItem?.title = nil
-        navigationController?.navigationBar.topItem?.title = ""
-    }
-    
     // MARK: - Actions
     @objc fileprivate func deleteItem() {
-        // видалити обєкт з масиву - як знайти в масиві це обєкт ?
-        // перейти в перший вюконтроллер
-        self.navigationController?.popViewController(animated: true)
-        // перезагрузити таблицю головного вікна
-        let viewController = TodoItemsViewController()
-        viewController.tableView.reloadData()
+    
     }
     
     // MARK: - UX
@@ -60,17 +48,12 @@ class ToDoItemDetailsViewController: UIViewController {
         configImageForName()
         configNameLabel()
         configureTableView()
+//        configDeleteButton()
     }
     
     fileprivate func configImageForName(){
         imageForName.image = UIImage(systemName: "wallet.pass.fill")
         imageForName.tintColor = item.color ?? .black
-        
-        imageForName.translatesAutoresizingMaskIntoConstraints = false
-        imageForName.heightAnchor.constraint(equalToConstant: 70 ).isActive = true
-        imageForName.widthAnchor.constraint(equalTo: imageForName.heightAnchor).isActive = true
-        imageForName.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
-        imageForName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
     }
     
     fileprivate func configNameLabel(){
@@ -79,12 +62,29 @@ class ToDoItemDetailsViewController: UIViewController {
         nameLabel.font = .systemFont(ofSize: 30, weight: .medium)
         nameLabel.numberOfLines = 0
         nameLabel.adjustsFontSizeToFitWidth = true
-        
+    }
+    
+    fileprivate func setupConstraints(){
+        imageForName.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: imageForName.topAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: imageForName.trailingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: imageForName.bottomAnchor).isActive = true
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageForName.heightAnchor.constraint(equalToConstant: 70 ),
+            imageForName.widthAnchor.constraint(equalTo: imageForName.heightAnchor),
+            imageForName.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            imageForName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding),
+            
+            nameLabel.topAnchor.constraint(equalTo: imageForName.topAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: imageForName.trailingAnchor, constant: Constants.Paddings.hPadding),
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.Paddings.hPadding),
+            nameLabel.bottomAnchor.constraint(equalTo: imageForName.bottomAnchor),
+            
+            tableView.heightAnchor.constraint(equalToConstant: 250),
+            tableView.topAnchor.constraint(equalTo: imageForName.bottomAnchor, constant: Constants.Paddings.hPadding),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.Paddings.hPadding)
+        ])
     }
     
     fileprivate func configureTableView() {
@@ -93,19 +93,21 @@ class ToDoItemDetailsViewController: UIViewController {
         tableView.register(DetailToDoCell.self, forCellReuseIdentifier: "DetailToDoCell")
         tableView.layer.cornerRadius = 12
         tableView.clipsToBounds = true
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        tableView.topAnchor.constraint(equalTo: imageForName.bottomAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Paddings.hPadding).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.Paddings.hPadding).isActive = true
     }
+    
+    // MARK: - Actions
+    
+    @objc func deleteButtonTapped(){
+        deleteButton.isSelected = false
+        deleteButton.backgroundColor = .systemBlue
+    }
+    
     
 } // class end
 
 extension ToDoItemDetailsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,6 +120,14 @@ extension ToDoItemDetailsViewController : UITableViewDelegate, UITableViewDataSo
         return 50
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 4:
+            deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        default:
+            return
+        }
+    }
     
 }
 

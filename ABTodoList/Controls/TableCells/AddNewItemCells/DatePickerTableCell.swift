@@ -31,22 +31,23 @@ class DatePickerTableCell: UITableViewCell {
         configControls()
     }
     
-    
     // MARK: - Constraints
     fileprivate func setupConstraints(){
         label.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
 
-        let datePickerLeftConstraint = label.rightAnchor.constraint(greaterThanOrEqualTo: datePicker.leftAnchor, constant: -Constants.Paddings.hPadding)
-        datePickerLeftConstraint.priority = UILayoutPriority(rawValue: 100)
+//        let datePickerLeftConstraint = label.rightAnchor.constraint(greaterThanOrEqualTo: datePicker.leftAnchor, constant: -Constants.Paddings.hPadding)
+//        datePickerLeftConstraint.priority = UILayoutPriority(rawValue: 100)
+        let datePickerRightConstraint = datePicker.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.Paddings.hPadding)
+        datePickerRightConstraint.priority = UILayoutPriority(rawValue: 999)
 
         NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
-            datePickerLeftConstraint,
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Paddings.hPadding),
             
-            datePicker.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            datePicker.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Constants.Paddings.hPadding)
+            datePicker.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            datePickerLeftConstraint,
+            datePickerRightConstraint
         ])
     }
     
@@ -56,6 +57,5 @@ class DatePickerTableCell: UITableViewCell {
         
         datePicker.datePickerMode = .dateAndTime
         datePicker.calendar = .current
-        datePicker.backgroundColor = .yellow
     }
 }
