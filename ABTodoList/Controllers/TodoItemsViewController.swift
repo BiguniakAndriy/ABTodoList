@@ -48,11 +48,14 @@ class TodoItemsViewController: UITableViewController {
     }
     
     @objc func onAddNewItemButton(){
-        let viewController = AddViewController(style: .insetGrouped)
-        viewController.delegate = self
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
-        self.present(navigationController, animated: true, completion: nil)
+        if #available(iOS 14.0, *) {
+            let viewController = AddViewController(style: .insetGrouped)
+            viewController.delegate = self
+            let navigationController = UINavigationController(rootViewController: viewController)
+            self.present(navigationController, animated: true, completion: nil)
+        } else {
+            return
+        }
     }
     
     fileprivate func generateTestData() -> [TodoItem] {
@@ -61,7 +64,7 @@ class TodoItemsViewController: UITableViewController {
         for i in 1...100 {
             items.append(TodoItem(
                 name: "Todo Item - \(i)",
-                date: Calendar.current.date(byAdding: .day, value: Int.random(in: 1...7), to: Date()) ?? Date(),
+                date: Calendar.current.date(byAdding: .hour, value: Int.random(in: 24...168), to: Date()) ?? Date(),
                 color: colors[Int.random(in: 0...5)],
                 priority: Priority(rawValue: Int.random(in: 1...5)) ?? .normal,
                 complete: Int.random(in: 1...5) == 1
@@ -75,7 +78,6 @@ class TodoItemsViewController: UITableViewController {
         for item in self.generateTestData() {
             appendDataItem(item)
         }
-        
         self.sectionDates.sort()
     }
 
@@ -86,13 +88,16 @@ class TodoItemsViewController: UITableViewController {
             self.datesWithItems[date]?.append(item)
         } else {
             self.sectionDates.append(date)
-            self.datesWithItems[date] = [ item ]
+            self.datesWithItems[date] = [item]
         }
+        self.datesWithItems[date]?.sort{ $0.date.compare($1.date) == .orderedAscending }
     }
+    
     // MARK: - HELPERS
     fileprivate func getTimeFrom(date: Date) -> String? {
         return self.timeFormatter.string(from: date)
     }
+    
     fileprivate func getDayFrom(date: Date) -> String? {
         return self.dateFormatter.string(from: date)
     }
@@ -120,6 +125,16 @@ class TodoItemsViewController: UITableViewController {
         self.datesWithItems[date] = items
         self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+    
+    fileprivate func deleteItem (indexPath: IndexPath) {
+        if var items = self.datesWithItems[self.sectionDates[indexPath.section]]  {
+            items.remove(at: indexPath.row)
+
+            self.datesWithItems[self.sectionDates[indexPath.section]] = items
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
 } //class end
 
 // MARK: - Table view data source
@@ -152,7 +167,8 @@ extension TodoItemsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let items = self.datesWithItems[self.sectionDates[indexPath.section]] else { return UITableViewCell() }
+        guard let items = self.datesWithItems[self.sectionDates[indexPath.section]] else {
+            return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemTableCell", for: indexPath) as! ToDoItemTableCell
         
@@ -181,24 +197,19 @@ extension TodoItemsViewController {
         
         let viewController = ToDoItemDetailsViewController()
         viewController.item = items[indexPath.row]
+        viewController.recievedIndexPath = indexPath
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK: -  Delete action
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteSwipeAction = deleteItem(at: indexPath)
+        let deleteSwipeAction = deleteContextualAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
     }
-    //delete func
-    func deleteItem (at indexPath: IndexPath) -> UIContextualAction {
+    //delete action
+    func deleteContextualAction (at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-            if var items = self.datesWithItems[self.sectionDates[indexPath.section]]  {
-                items.remove(at: indexPath.row)
-
-                self.datesWithItems[self.sectionDates[indexPath.section]] = items
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-            
+            self.deleteItem(indexPath: indexPath)
             completion(true)
         }
         action.image = UIImage(systemName: "trash.fill")
@@ -210,8 +221,19 @@ extension TodoItemsViewController {
 extension TodoItemsViewController: AddViewControllerDelegate {
     func addViewControllerDismissedWithItem(_ item: TodoItem) {
         appendDataItem(item)
+        
+        guard let section = self.sectionDates.firstIndex(where: {$0 == Calendar.current.startOfDay(for: item.date) }) else {return}
+        guard let row = self.datesWithItems[Calendar.current.startOfDay(for: item.date)]?.firstIndex(where: {$0.date == item.date && $0.name == item.name}) else {return}
+        let indexPath = IndexPath(row: row, section: section)
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+}
 
-        tableView.reloadData()
+// MARK: - ToDoItemDetailsViewControllerDelegate
+extension TodoItemsViewController: ToDoItemDetailsViewControllerDelegate {
+    func toDoItemViewControllerDismissedWithDeletedItem (indexPath: IndexPath) {
+        print("delegate")
+        self.deleteItem(indexPath: indexPath)
     }
 }
 
@@ -220,3 +242,6 @@ extension TodoItemsViewController: AddViewControllerDelegate {
 // 2 Удаление item'a из details view. (протокол, делагат, удаление из таблица)
 // 3 Разобраться с UIAlertController
 // 4 Сортировать items внутри секции.
+
+
+

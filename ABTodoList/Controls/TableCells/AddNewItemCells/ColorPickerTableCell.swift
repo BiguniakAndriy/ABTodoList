@@ -53,7 +53,6 @@ class ColorPickerTableCell: UITableViewCell {
     fileprivate func configControls(){
         label.text = "Color"
         label.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = .yellow
         
         if selectedColor == nil {
             button.setTitle("Tap to select", for: .normal)
@@ -67,3 +66,12 @@ class ColorPickerTableCell: UITableViewCell {
     }
 }
 
+// MARK: - ColorPicker Delegate
+extension ColorPickerTableCell: UIColorPickerViewControllerDelegate {
+    @available(iOS 14.0, *)
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        self.selectedColor = viewController.selectedColor
+        print(viewController.selectedColor) // не працює
+        
+    }
+}

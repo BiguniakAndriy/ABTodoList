@@ -9,12 +9,13 @@ import UIKit
 
 class ToDoItemDetailsViewController: UIViewController {
     var item: TodoItem!
+    var recievedIndexPath: IndexPath?
+    weak var delegate: ToDoItemDetailsViewControllerDelegate?
     
-    var labelView = UIView()
-    var imageForName = UIImageView()
-    var nameLabel = UILabel()
-    var tableView = UITableView()
-    var deleteButton = UIButton()
+    let labelView = UIView()
+    let imageForName = UIImageView()
+    let nameLabel = UILabel()
+    let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,6 @@ class ToDoItemDetailsViewController: UIViewController {
         self.title = "Details"
     }
     
-    // MARK: - Actions
-    @objc fileprivate func deleteItem() {
-    
-    }
-    
     // MARK: - UX
     fileprivate func setupUX(){
         view.addSubview(imageForName)
@@ -48,7 +44,6 @@ class ToDoItemDetailsViewController: UIViewController {
         configImageForName()
         configNameLabel()
         configureTableView()
-//        configDeleteButton()
     }
     
     fileprivate func configImageForName(){
@@ -90,45 +85,75 @@ class ToDoItemDetailsViewController: UIViewController {
     fileprivate func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(DetailToDoCell.self, forCellReuseIdentifier: "DetailToDoCell")
+        tableView.register(DateDetailCell.self, forCellReuseIdentifier: "DateDetailCell")
+        tableView.register(ColorDetailCell.self, forCellReuseIdentifier: "ColorDetailCell")
+        tableView.register(PriorityDetailCell.self, forCellReuseIdentifier: "PriorityDetailCell")
+        tableView.register(CompleteDetailCell.self, forCellReuseIdentifier: "CompleteDetailCell")
+        tableView.register(DeleteDetailCell.self, forCellReuseIdentifier: "DeleteDetailCell")
         tableView.layer.cornerRadius = 12
         tableView.clipsToBounds = true
+        tableView.allowsSelection = false
     }
     
-    // MARK: - Actions
-    
-    @objc func deleteButtonTapped(){
-        deleteButton.isSelected = false
-        deleteButton.backgroundColor = .systemBlue
+    // MARK: - ACTIONS
+    @objc fileprivate func deleteButtonTapped(){
+        let alert = UIAlertController(title: "Deleting", message: "Are you sure you want to delete this Task?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                self.delegate?.toDoItemViewControllerDismissedWithDeletedItem(indexPath: self.recievedIndexPath!)
+                self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
-    
     
 } // class end
 
+
+    // MARK: - TABLE VIEW Delegate and Datasourse
 extension ToDoItemDetailsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailToDoCell") as! DetailToDoCell
-        cell.setDetailCell(item: item, indexPath: indexPath)
-        return cell
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DateDetailCell") as! DateDetailCell
+            cell.setDetailCell(item: item)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ColorDetailCell") as! ColorDetailCell
+            cell.setDetailCell(item: item)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PriorityDetailCell") as! PriorityDetailCell
+            cell.setDetailCell(item: item)
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteDetailCell") as! CompleteDetailCell
+            cell.setDetailCell(item: item)
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteDetailCell") as! DeleteDetailCell
+            cell.deleteButton.addTarget(self, action: #selector(self.deleteButtonTapped), for: .touchUpInside)
+            return cell
+        default:
+            return UITableViewCell()
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 4:
-            deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        default:
-            return
-        }
-    }
-    
+}
+
+    // MARK: - PROTOCOL
+protocol ToDoItemDetailsViewControllerDelegate : class {
+    func toDoItemViewControllerDismissedWithDeletedItem (indexPath: IndexPath)
 }
 
 

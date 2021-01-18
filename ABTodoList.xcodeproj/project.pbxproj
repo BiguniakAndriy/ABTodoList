@@ -14,7 +14,7 @@
 		9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513230A25711F170018DC2C /* TodoItemsViewController.swift */; };
 		951323122571237B0018DC2C /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951323112571237B0018DC2C /* Priority.swift */; };
 		9513231725728D670018DC2C /* ToDoItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */; };
-		9513231A257295C60018DC2C /* DetailToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95132319257295C60018DC2C /* DetailToDoCell.swift */; };
+		9513231A257295C60018DC2C /* DeleteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95132319257295C60018DC2C /* DeleteDetailCell.swift */; };
 		951FD51C25A475E800F4072C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51B25A475E800F4072C /* Constants.swift */; };
 		951FD51F25A478F500F4072C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51E25A478F500F4072C /* Strings.swift */; };
 		951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */; };
@@ -24,13 +24,16 @@
 		954C8FDD257F0B0B00A258F2 /* Color Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDC257F0B0B00A258F2 /* Color Ext.swift */; };
 		954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */; };
 		954FC7702576756C00402083 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FC76F2576756C00402083 /* Date+Utils.swift */; };
+		9555F87225AF972E0090C5E0 /* DateDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87125AF972E0090C5E0 /* DateDetailCell.swift */; };
+		9555F87525AF97440090C5E0 /* PriorityDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */; };
+		9555F87825AF97580090C5E0 /* CompleteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */; };
+		9555F87B25AF97660090C5E0 /* ColorDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */; };
 		95659ABC25711B4A006B5FA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95659ABB25711B4A006B5FA8 /* AppDelegate.swift */; };
 		95659ABE25711B4A006B5FA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95659ABD25711B4A006B5FA8 /* SceneDelegate.swift */; };
 		95659AC325711B4A006B5FA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC125711B4A006B5FA8 /* Main.storyboard */; };
 		95659AC525711B4B006B5FA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC425711B4B006B5FA8 /* Assets.xcassets */; };
 		95659AC825711B4B006B5FA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC625711B4B006B5FA8 /* LaunchScreen.storyboard */; };
 		958F792025818BD900CC02E9 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F791F25818BD900CC02E9 /* saveButton.swift */; };
-		958F7923258196D700CC02E9 /* AddNewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F7922258196D700CC02E9 /* AddNewItemCell.swift */; };
 		958F792725828F0500CC02E9 /* Text Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F792625828F0500CC02E9 /* Text Ext.swift */; };
 		B39713AFA5E751456021BE2C /* Pods_ABTodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF9F2468D1E02EAE0353443 /* Pods_ABTodoList.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +48,7 @@
 		9513230A25711F170018DC2C /* TodoItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsViewController.swift; sourceTree = "<group>"; };
 		951323112571237B0018DC2C /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemDetailsViewController.swift; sourceTree = "<group>"; };
-		95132319257295C60018DC2C /* DetailToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToDoCell.swift; sourceTree = "<group>"; };
+		95132319257295C60018DC2C /* DeleteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDetailCell.swift; sourceTree = "<group>"; };
 		951FD51B25A475E800F4072C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		951FD51E25A478F500F4072C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableCell.swift; sourceTree = "<group>"; };
@@ -55,6 +58,10 @@
 		954C8FDC257F0B0B00A258F2 /* Color Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color Ext.swift"; sourceTree = "<group>"; };
 		954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithAction.swift; sourceTree = "<group>"; };
 		954FC76F2576756C00402083 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		9555F87125AF972E0090C5E0 /* DateDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDetailCell.swift; sourceTree = "<group>"; };
+		9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityDetailCell.swift; sourceTree = "<group>"; };
+		9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteDetailCell.swift; sourceTree = "<group>"; };
+		9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailCell.swift; sourceTree = "<group>"; };
 		95659AB825711B4A006B5FA8 /* ABTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95659ABB25711B4A006B5FA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95659ABD25711B4A006B5FA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +70,6 @@
 		95659AC725711B4B006B5FA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95659AC925711B4B006B5FA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		958F791F25818BD900CC02E9 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
-		958F7922258196D700CC02E9 /* AddNewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemCell.swift; sourceTree = "<group>"; };
 		958F792625828F0500CC02E9 /* Text Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text Ext.swift"; sourceTree = "<group>"; };
 		A09396C393D2C24AB2BC324F /* Pods-ABTodoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABTodoList.release.xcconfig"; path = "Target Support Files/Pods-ABTodoList/Pods-ABTodoList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +149,6 @@
 		954FC7742577B83600402083 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				954FC7782577B8EB00402083 /* Views */,
 				954FC7772577B8DE00402083 /* Buttons */,
 				954FC7752577B84100402083 /* TableCells */,
 			);
@@ -154,8 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */,
-				95132319257295C60018DC2C /* DetailToDoCell.swift */,
-				958F7922258196D700CC02E9 /* AddNewItemCell.swift */,
+				9555F86B25AF96570090C5E0 /* DetailCells */,
 				95F713C025A6646C008A1FA8 /* AddNewItemCells */,
 			);
 			path = TableCells;
@@ -168,13 +172,6 @@
 				958F791F25818BD900CC02E9 /* saveButton.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		954FC7782577B8EB00402083 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		954FC7792577B94400402083 /* Core */ = {
@@ -205,6 +202,18 @@
 				323BE5A825A488D3003FF879 /* Colors.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9555F86B25AF96570090C5E0 /* DetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				9555F87125AF972E0090C5E0 /* DateDetailCell.swift */,
+				9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */,
+				9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */,
+				9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */,
+				95132319257295C60018DC2C /* DeleteDetailCell.swift */,
+			);
+			path = DetailCells;
 			sourceTree = "<group>";
 		};
 		95659AAF25711B4A006B5FA8 = {
@@ -367,15 +376,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				951FD52E25A49DAE00F4072C /* SetPriorityTableCell.swift in Sources */,
+				9555F87B25AF97660090C5E0 /* ColorDetailCell.swift in Sources */,
 				323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */,
-				9513231A257295C60018DC2C /* DetailToDoCell.swift in Sources */,
+				9513231A257295C60018DC2C /* DeleteDetailCell.swift in Sources */,
 				323BE5A925A488D3003FF879 /* Colors.swift in Sources */,
 				958F792025818BD900CC02E9 /* saveButton.swift in Sources */,
 				9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */,
 				951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */,
 				954FC7702576756C00402083 /* Date+Utils.swift in Sources */,
 				954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */,
-				958F7923258196D700CC02E9 /* AddNewItemCell.swift in Sources */,
 				954C8FD8257E5D8700A258F2 /* ToDoItemTableCell.swift in Sources */,
 				323BE5AC25A48941003FF879 /* AddViewController.swift in Sources */,
 				951FD51C25A475E800F4072C /* Constants.swift in Sources */,
@@ -383,11 +392,14 @@
 				9513231725728D670018DC2C /* ToDoItemDetailsViewController.swift in Sources */,
 				95659ABC25711B4A006B5FA8 /* AppDelegate.swift in Sources */,
 				9513230825711DCF0018DC2C /* TodoItem.swift in Sources */,
+				9555F87225AF972E0090C5E0 /* DateDetailCell.swift in Sources */,
 				951FD51F25A478F500F4072C /* Strings.swift in Sources */,
 				951FD52B25A49D8F00F4072C /* ColorPickerTableCell.swift in Sources */,
 				951323122571237B0018DC2C /* Priority.swift in Sources */,
 				95659ABE25711B4A006B5FA8 /* SceneDelegate.swift in Sources */,
+				9555F87525AF97440090C5E0 /* PriorityDetailCell.swift in Sources */,
 				958F792725828F0500CC02E9 /* Text Ext.swift in Sources */,
+				9555F87825AF97580090C5E0 /* CompleteDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,5 +17,9 @@ struct Constants {
         static let vPadding: CGFloat = 15
     }
     
+    struct Size {
+        static let iconSize: CGFloat = 30
+    }
+    
 
 }

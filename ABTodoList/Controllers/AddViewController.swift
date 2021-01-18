@@ -7,24 +7,20 @@
 
 import UIKit
 
-protocol AddViewControllerDelegate: class {
-    func addViewControllerDismissedWithItem(_ item: TodoItem)
-}
-
+@available(iOS 14.0, *)
 class AddViewController: UITableViewController {
+    
+    let colorPicker = UIColorPickerViewController()
+    
     struct TodoItemData {
         var name : String?
-        var description : String?
         var date : Date = Date()
-        var color : UIColor? = .red
+        var color : UIColor?
         var priority : Priority = .normal
-        
         var isFilled: Bool {
             return
-                (name != nil && !name!.isEmpty) //&&
-//                (description != nil && !description!.isEmpty)
+                (name != nil && !name!.isEmpty)
         }
-        
         
         func validateErrors() -> [String]? {
             if isFilled { return nil }
@@ -34,10 +30,6 @@ class AddViewController: UITableViewController {
             if name == nil || name!.isEmpty {
                 errors.append("Please provide ToDo Item name!")
             }
-            
-//            if description == nil || description!.isEmpty {
-//                errors.append("Please provide ToDo Item description!")
-//            }
             
             return errors
         }
@@ -105,8 +97,9 @@ class AddViewController: UITableViewController {
     }
     
     @objc fileprivate func onSelectColorButton(_ sender: UIButton) {
-        sender.backgroundColor = .red
-        print("button works !")
+            colorPicker.selectedColor = .black
+            colorPicker.delegate = self
+            self.present(colorPicker, animated: true, completion: nil)
     }
     
     @objc fileprivate func onPriorirySliderChanged(_ sender: UISlider) {
@@ -166,5 +159,20 @@ class AddViewController: UITableViewController {
         }
         
         return UITableViewCell()
+    }
+}
+
+// MARK: - PROTOCOL
+protocol AddViewControllerDelegate: class {
+    func addViewControllerDismissedWithItem(_ item: TodoItem)
+}
+
+// MARK: - UIColorPickerViewControllerDelegate
+@available(iOS 14.0, *)
+extension AddViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        self.itemData.color = viewController.selectedColor
+
+          // як достукатись до self.tableview.cell(та, з якої був перехід до ColorPickerVC).button ??
     }
 }
