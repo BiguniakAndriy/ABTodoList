@@ -9,8 +9,6 @@ import UIKit
 
 class ColorPickerTableCell: UITableViewCell {
     
-    var selectedColor : UIColor?
-    
     let label = UILabel()
     let button = UIButton(type: .system)
     
@@ -54,24 +52,9 @@ class ColorPickerTableCell: UITableViewCell {
         label.text = "Color"
         label.font = .systemFont(ofSize: 18, weight: .medium)
         
-        if selectedColor == nil {
-            button.setTitle("Tap to select", for: .normal)
-            button.setTitleColor(.systemGray, for: .normal)
-            button.titleLabel?.font = .italicSystemFont(ofSize: 18)
-        } else {
-            button.layer.borderWidth = 1
-            button.layer.borderColor = CGColor.init(gray: 0.8, alpha: 1)
-            button.backgroundColor = selectedColor
-        }
+        button.setTitle("Tap to select", for: .normal)
+        button.setTitleColor(.systemGray, for: .normal)
+        button.titleLabel?.font = .italicSystemFont(ofSize: 18)
     }
 }
 
-// MARK: - ColorPicker Delegate
-extension ColorPickerTableCell: UIColorPickerViewControllerDelegate {
-    @available(iOS 14.0, *)
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        self.selectedColor = viewController.selectedColor
-        print(viewController.selectedColor) // не працює
-        
-    }
-}

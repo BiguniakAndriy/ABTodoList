@@ -206,7 +206,7 @@ extension TodoItemsViewController {
         let deleteSwipeAction = deleteContextualAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
     }
-    //delete action
+    // action
     func deleteContextualAction (at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             self.deleteItem(indexPath: indexPath)
@@ -232,7 +232,6 @@ extension TodoItemsViewController: AddViewControllerDelegate {
 // MARK: - ToDoItemDetailsViewControllerDelegate
 extension TodoItemsViewController: ToDoItemDetailsViewControllerDelegate {
     func toDoItemViewControllerDismissedWithDeletedItem (indexPath: IndexPath) {
-        print("delegate")
         self.deleteItem(indexPath: indexPath)
     }
 }

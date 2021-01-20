@@ -97,7 +97,9 @@ class AddViewController: UITableViewController {
     }
     
     @objc fileprivate func onSelectColorButton(_ sender: UIButton) {
-            colorPicker.selectedColor = .black
+        if itemData.color != nil {
+            colorPicker.selectedColor = itemData.color!
+        } else { colorPicker.selectedColor = .black }
             colorPicker.delegate = self
             self.present(colorPicker, animated: true, completion: nil)
     }
@@ -147,6 +149,12 @@ class AddViewController: UITableViewController {
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
+                if itemData.color != nil  {
+                    cell.button.setTitle("", for: .normal)
+                    cell.button.backgroundColor = itemData.color
+                    cell.button.layer.borderWidth = 1
+                    cell.button.layer.borderColor = CGColor.init(gray: 0.8, alpha: 1)
+                }
                 cell.button.addTarget(self, action: #selector(self.onSelectColorButton(_:)), for: .touchUpInside)
                 return cell
             case 2:
@@ -172,7 +180,6 @@ protocol AddViewControllerDelegate: class {
 extension AddViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         self.itemData.color = viewController.selectedColor
-
-          // як достукатись до self.tableview.cell(та, з якої був перехід до ColorPickerVC).button ??
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 1)], with: .automatic)
     }
 }
