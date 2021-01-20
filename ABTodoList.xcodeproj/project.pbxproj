@@ -129,13 +129,6 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		95132310257123270018DC2C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		954FC7722576757C00402083 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,7 +233,6 @@
 				954FC7792577B94400402083 /* Core */,
 				954FC7742577B83600402083 /* Controls */,
 				954FC7722576757C00402083 /* Extentions */,
-				95132310257123270018DC2C /* Protocols */,
 				9513230F2571231E0018DC2C /* Enums */,
 				9513230625711DBA0018DC2C /* Model */,
 				9513230D25711F1B0018DC2C /* Controllers */,

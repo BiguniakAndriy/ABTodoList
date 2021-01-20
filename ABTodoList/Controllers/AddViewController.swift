@@ -96,7 +96,7 @@ class AddViewController: UITableViewController {
         itemData.date = sender.date
     }
     
-    @objc fileprivate func onSelectColorButton(_ sender: UIButton) {
+    @objc fileprivate func onSelectButton(_ sender: UIButton) {
         if itemData.color != nil {
             colorPicker.selectedColor = itemData.color!
         } else { colorPicker.selectedColor = .black }
@@ -104,9 +104,14 @@ class AddViewController: UITableViewController {
             self.present(colorPicker, animated: true, completion: nil)
     }
     
+    @objc fileprivate func onResetButton(_ sender: UIButton) {
+        itemData.color = nil
+        self.tableView.reloadData()
+    }
+    
     @objc fileprivate func onPriorirySliderChanged(_ sender: UISlider) {
         self.itemData.priority = Priority(rawValue: Int(sender.value)) ?? Priority.normal
-        print("slider works, value - \(sender.value)")
+        self.tableView.reloadData()
     }
 
     // MARK: - HELPERS
@@ -131,7 +136,7 @@ class AddViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return  indexPath.row == 2 ? 120 : 60
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -150,15 +155,19 @@ class AddViewController: UITableViewController {
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ColorPickerTableCell", for: indexPath) as! ColorPickerTableCell
                 if itemData.color != nil  {
-                    cell.button.setTitle("", for: .normal)
-                    cell.button.backgroundColor = itemData.color
-                    cell.button.layer.borderWidth = 1
-                    cell.button.layer.borderColor = CGColor.init(gray: 0.8, alpha: 1)
+                    cell.colorButton.setTitle("Color                  Tap to RESET", for: .normal)
+                    cell.colorView.isHidden = false
+                    cell.colorView.backgroundColor = itemData.color
+                    cell.colorButton.addTarget(self, action: #selector(self.onResetButton(_:)), for: .touchUpInside)
+                } else { 
+                    cell.colorButton.setTitle("Color                  Tap to SELECT" , for: .normal)
+                    cell.colorView.isHidden = true
+                    cell.colorButton.addTarget(self, action: #selector(self.onSelectButton(_:)), for: .touchUpInside)
                 }
-                cell.button.addTarget(self, action: #selector(self.onSelectColorButton(_:)), for: .touchUpInside)
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriorityTableCell", for: indexPath) as! SetPriorityTableCell
+                cell.sliderDetail.text = "\(itemData.priority)"
                 cell.slider.addTarget(self, action: #selector(self.onPriorirySliderChanged(_:)), for: .valueChanged)
                 return cell
             default: break

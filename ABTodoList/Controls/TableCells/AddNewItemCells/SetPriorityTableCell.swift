@@ -11,6 +11,8 @@ class SetPriorityTableCell: UITableViewCell {
 
     let label = UILabel()
     var slider = UISlider()
+    var sliderDetail = UILabel()
+    let stackView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +29,7 @@ class SetPriorityTableCell: UITableViewCell {
     // MARK: - UI
     fileprivate func setupCell(){
         contentView.addSubview(label)
+        contentView.addSubview(sliderDetail)
         contentView.addSubview(slider)
         configControls()
     }
@@ -35,14 +38,18 @@ class SetPriorityTableCell: UITableViewCell {
     fileprivate func setupConstraints(){
         label.translatesAutoresizingMaskIntoConstraints = false
         slider.translatesAutoresizingMaskIntoConstraints = false
+        sliderDetail.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
             
-            slider.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            slider.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 20),
             slider.leadingAnchor.constraint(equalTo: contentView.centerXAnchor),
-            slider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Paddings.hPadding)
+            slider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Paddings.hPadding),
+            
+            sliderDetail.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -20),
+            sliderDetail.centerXAnchor.constraint(equalTo: slider.centerXAnchor),
         ])
     }
     
@@ -54,5 +61,8 @@ class SetPriorityTableCell: UITableViewCell {
         slider.value = 3
         slider.maximumValue = 5
         slider.minimumValue = 1
+        
+        sliderDetail.font = .systemFont(ofSize: 18, weight: .regular)
+        sliderDetail.textColor = .systemGray
     }
 }
