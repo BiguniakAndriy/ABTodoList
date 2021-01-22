@@ -1,5 +1,5 @@
 //
-//  TextFieldTableCell.swift
+//  TextFieldDetailCell.swift
 //  ABTodoList
 //
 //  Created by Dima on 05.01.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TextFieldTableCell: UITableViewCell {
+class TextFieldDetailCell: UITableViewCell {
     let textField: UITextField = {
         let field = UITextField()
         field.font = .systemFont(ofSize: 16)

@@ -195,10 +195,18 @@ extension TodoItemsViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let items = self.datesWithItems[self.sectionDates[indexPath.section]] else { return }
         
-        let viewController = ToDoItemDetailsViewController()
-        viewController.item = items[indexPath.row]
-        viewController.recievedIndexPath = indexPath
-        self.navigationController?.pushViewController(viewController, animated: true)
+        if #available(iOS 14.0, *) {
+            let viewController = AddViewController(style: .insetGrouped)
+            
+            viewController.delegate = self
+            
+            viewController.recievedItem = items[indexPath.row]
+            viewController.recievedIndexPath = indexPath
+            self.navigationController?.pushViewController(viewController, animated: true)
+//            let navigationController = UINavigationController(rootViewController: viewController)
+//            self.present(navigationController, animated: true, completion: nil)
+        } else { return }
+       
     }
     
     // MARK: -  Delete action
@@ -219,7 +227,14 @@ extension TodoItemsViewController {
 
 // MARK: - AddViewControllerDelegate
 extension TodoItemsViewController: AddViewControllerDelegate {
+    func addViewControllerDeleteItem(indexPath: IndexPath) {
+        self.deleteItem(indexPath: indexPath)
+    }
+    
     func addViewControllerDismissedWithItem(_ item: TodoItem) {
+        
+        // якщо сьогоднішній день - вибиває
+        
         appendDataItem(item)
         
         guard let section = self.sectionDates.firstIndex(where: {$0 == Calendar.current.startOfDay(for: item.date) }) else {return}
@@ -229,12 +244,12 @@ extension TodoItemsViewController: AddViewControllerDelegate {
     }
 }
 
-// MARK: - ToDoItemDetailsViewControllerDelegate
-extension TodoItemsViewController: ToDoItemDetailsViewControllerDelegate {
-    func toDoItemViewControllerDismissedWithDeletedItem (indexPath: IndexPath) {
-        self.deleteItem(indexPath: indexPath)
-    }
-}
+//// MARK: - ToDoItemDetailsViewControllerDelegate
+//extension TodoItemsViewController: ToDoItemDetailsViewControllerDelegate {
+//    func toDoItemViewControllerDismissedWithDeletedItem (indexPath: IndexPath) {
+//        self.deleteItem(indexPath: indexPath)
+//    }
+//}
 
 
 // 1 Добавление item через tableView.insertRows(at)

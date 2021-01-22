@@ -1,5 +1,5 @@
 //
-//  SetPriorityTableViewCell.swift
+//  SetPriorityDetailCell.swift
 //  ABTodoList
 //
 //  Created by Andriy Biguniak on 05.01.2021.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-class SetPriorityTableCell: UITableViewCell {
+class SetPriorityDetailCell: UITableViewCell {
 
+    let icon = UIImageView()
     let label = UILabel()
     var slider = UISlider()
     var sliderDetail = UILabel()
@@ -28,6 +29,7 @@ class SetPriorityTableCell: UITableViewCell {
     
     // MARK: - UI
     fileprivate func setupCell(){
+        contentView.addSubview(icon)
         contentView.addSubview(label)
         contentView.addSubview(sliderDetail)
         contentView.addSubview(slider)
@@ -36,25 +38,34 @@ class SetPriorityTableCell: UITableViewCell {
     
     // MARK: - Constraints
     fileprivate func setupConstraints(){
+        icon.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         slider.translatesAutoresizingMaskIntoConstraints = false
         sliderDetail.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            icon.heightAnchor.constraint(equalToConstant: Constants.Size.iconSize),
+            icon.widthAnchor.constraint(equalToConstant: Constants.Size.iconSize),
+            icon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.Paddings.hPadding),
+            
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Paddings.hPadding),
+            label.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: Constants.Paddings.hPadding),
             
-            slider.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 20),
-            slider.leadingAnchor.constraint(equalTo: contentView.centerXAnchor),
-            slider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Paddings.hPadding),
+            slider.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 15),
+            slider.leftAnchor.constraint(equalTo: contentView.centerXAnchor),
+            slider.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Constants.Paddings.hPadding),
             
-            sliderDetail.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -20),
+            sliderDetail.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -15),
             sliderDetail.centerXAnchor.constraint(equalTo: slider.centerXAnchor),
         ])
     }
     
     // MARK: Controls
     fileprivate func configControls(){
+        icon.image = UIImage(systemName: "exclamationmark.octagon")
+        icon.tintColor = .systemBlue
+        
         label.text = "Priority"
         label.font = .systemFont(ofSize: 18, weight: .medium)
         

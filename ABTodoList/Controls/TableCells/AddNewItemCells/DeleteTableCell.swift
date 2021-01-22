@@ -1,5 +1,5 @@
 //
-//  DeleteDetailCell.swift
+//  DeleteTableCell.swift
 //  ABTodoList
 //
 //  Created by Andriy Biguniak on 28.11.2020.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DeleteDetailCell: UITableViewCell {
+class DeleteTableCell: UITableViewCell {
 
     let deleteButton = UIButton(type: .system)
 

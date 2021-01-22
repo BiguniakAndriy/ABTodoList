@@ -9,25 +9,21 @@
 /* Begin PBXBuildFile section */
 		323BE5A925A488D3003FF879 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5A825A488D3003FF879 /* Colors.swift */; };
 		323BE5AC25A48941003FF879 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5AB25A48941003FF879 /* AddViewController.swift */; };
-		323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */; };
+		323BE5AF25A4915C003FF879 /* TeTextFieldDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323BE5AE25A4915C003FF879 /* TeTextFieldDetailCell.swift */; };
 		9513230825711DCF0018DC2C /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513230725711DCF0018DC2C /* TodoItem.swift */; };
 		9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513230A25711F170018DC2C /* TodoItemsViewController.swift */; };
 		951323122571237B0018DC2C /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951323112571237B0018DC2C /* Priority.swift */; };
-		9513231725728D670018DC2C /* ToDoItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */; };
-		9513231A257295C60018DC2C /* DeleteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95132319257295C60018DC2C /* DeleteDetailCell.swift */; };
+		9513231A257295C60018DC2C /* DeleteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95132319257295C60018DC2C /* DeleteTableCell.swift */; };
 		951FD51C25A475E800F4072C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51B25A475E800F4072C /* Constants.swift */; };
 		951FD51F25A478F500F4072C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD51E25A478F500F4072C /* Strings.swift */; };
-		951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */; };
-		951FD52B25A49D8F00F4072C /* ColorPickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */; };
-		951FD52E25A49DAE00F4072C /* SetPriorityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */; };
+		951FD52825A49D6A00F4072C /* DatePickerDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52725A49D6A00F4072C /* DatePickerDetailCell.swift */; };
+		951FD52B25A49D8F00F4072C /* ColorPickerDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52A25A49D8F00F4072C /* ColorPickerDetailCell.swift */; };
+		951FD52E25A49DAE00F4072C /* SetPriorityDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FD52D25A49DAE00F4072C /* SetPriorityDetailCell.swift */; };
 		954C8FD8257E5D8700A258F2 /* ToDoItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */; };
 		954C8FDD257F0B0B00A258F2 /* Color Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDC257F0B0B00A258F2 /* Color Ext.swift */; };
 		954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */; };
 		954FC7702576756C00402083 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FC76F2576756C00402083 /* Date+Utils.swift */; };
-		9555F87225AF972E0090C5E0 /* DateDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87125AF972E0090C5E0 /* DateDetailCell.swift */; };
-		9555F87525AF97440090C5E0 /* PriorityDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */; };
 		9555F87825AF97580090C5E0 /* CompleteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */; };
-		9555F87B25AF97660090C5E0 /* ColorDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */; };
 		95659ABC25711B4A006B5FA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95659ABB25711B4A006B5FA8 /* AppDelegate.swift */; };
 		95659ABE25711B4A006B5FA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95659ABD25711B4A006B5FA8 /* SceneDelegate.swift */; };
 		95659AC325711B4A006B5FA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95659AC125711B4A006B5FA8 /* Main.storyboard */; };
@@ -41,27 +37,23 @@
 /* Begin PBXFileReference section */
 		323BE5A825A488D3003FF879 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		323BE5AB25A48941003FF879 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableCell.swift; sourceTree = "<group>"; };
+		323BE5AE25A4915C003FF879 /* TeTextFieldDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeTextFieldDetailCell.swift; sourceTree = "<group>"; };
 		6DF9F2468D1E02EAE0353443 /* Pods_ABTodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ABTodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A56063F363A9C01EB389A5 /* Pods-ABTodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABTodoList.debug.xcconfig"; path = "Target Support Files/Pods-ABTodoList/Pods-ABTodoList.debug.xcconfig"; sourceTree = "<group>"; };
 		9513230725711DCF0018DC2C /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		9513230A25711F170018DC2C /* TodoItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsViewController.swift; sourceTree = "<group>"; };
 		951323112571237B0018DC2C /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
-		9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemDetailsViewController.swift; sourceTree = "<group>"; };
-		95132319257295C60018DC2C /* DeleteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDetailCell.swift; sourceTree = "<group>"; };
+		95132319257295C60018DC2C /* DeleteTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTableCell.swift; sourceTree = "<group>"; };
 		951FD51B25A475E800F4072C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		951FD51E25A478F500F4072C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableCell.swift; sourceTree = "<group>"; };
-		951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerTableCell.swift; sourceTree = "<group>"; };
-		951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriorityTableCell.swift; sourceTree = "<group>"; };
+		951FD52725A49D6A00F4072C /* DatePickerDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDetailCell.swift; sourceTree = "<group>"; };
+		951FD52A25A49D8F00F4072C /* ColorPickerDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDetailCell.swift; sourceTree = "<group>"; };
+		951FD52D25A49DAE00F4072C /* SetPriorityDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriorityDetailCell.swift; sourceTree = "<group>"; };
 		954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTableCell.swift; sourceTree = "<group>"; };
 		954C8FDC257F0B0B00A258F2 /* Color Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color Ext.swift"; sourceTree = "<group>"; };
 		954C8FDF257F939B00A258F2 /* ButtonWithAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithAction.swift; sourceTree = "<group>"; };
 		954FC76F2576756C00402083 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
-		9555F87125AF972E0090C5E0 /* DateDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDetailCell.swift; sourceTree = "<group>"; };
-		9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityDetailCell.swift; sourceTree = "<group>"; };
 		9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteDetailCell.swift; sourceTree = "<group>"; };
-		9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailCell.swift; sourceTree = "<group>"; };
 		95659AB825711B4A006B5FA8 /* ABTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95659ABB25711B4A006B5FA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95659ABD25711B4A006B5FA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				9513230A25711F170018DC2C /* TodoItemsViewController.swift */,
-				9513231625728D670018DC2C /* ToDoItemDetailsViewController.swift */,
 				323BE5AB25A48941003FF879 /* AddViewController.swift */,
 			);
 			path = Controllers;
@@ -152,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				954C8FD7257E5D8700A258F2 /* ToDoItemTableCell.swift */,
-				9555F86B25AF96570090C5E0 /* DetailCells */,
 				95F713C025A6646C008A1FA8 /* AddNewItemCells */,
 			);
 			path = TableCells;
@@ -197,18 +187,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		9555F86B25AF96570090C5E0 /* DetailCells */ = {
-			isa = PBXGroup;
-			children = (
-				9555F87125AF972E0090C5E0 /* DateDetailCell.swift */,
-				9555F87A25AF97660090C5E0 /* ColorDetailCell.swift */,
-				9555F87425AF97440090C5E0 /* PriorityDetailCell.swift */,
-				9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */,
-				95132319257295C60018DC2C /* DeleteDetailCell.swift */,
-			);
-			path = DetailCells;
-			sourceTree = "<group>";
-		};
 		95659AAF25711B4A006B5FA8 = {
 			isa = PBXGroup;
 			children = (
@@ -245,10 +223,12 @@
 		95F713C025A6646C008A1FA8 /* AddNewItemCells */ = {
 			isa = PBXGroup;
 			children = (
-				323BE5AE25A4915C003FF879 /* TextFieldTableCell.swift */,
-				951FD52725A49D6A00F4072C /* DatePickerTableCell.swift */,
-				951FD52A25A49D8F00F4072C /* ColorPickerTableCell.swift */,
-				951FD52D25A49DAE00F4072C /* SetPriorityTableCell.swift */,
+				323BE5AE25A4915C003FF879 /* TeTextFieldDetailCell.swift */,
+				951FD52725A49D6A00F4072C /* DatePickerDetailCell.swift */,
+				951FD52A25A49D8F00F4072C /* ColorPickerDetailCell.swift */,
+				951FD52D25A49DAE00F4072C /* SetPriorityDetailCell.swift */,
+				9555F87725AF97580090C5E0 /* CompleteDetailCell.swift */,
+				95132319257295C60018DC2C /* DeleteTableCell.swift */,
 			);
 			path = AddNewItemCells;
 			sourceTree = "<group>";
@@ -367,29 +347,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951FD52E25A49DAE00F4072C /* SetPriorityTableCell.swift in Sources */,
-				9555F87B25AF97660090C5E0 /* ColorDetailCell.swift in Sources */,
-				323BE5AF25A4915C003FF879 /* TextFieldTableCell.swift in Sources */,
-				9513231A257295C60018DC2C /* DeleteDetailCell.swift in Sources */,
+				951FD52E25A49DAE00F4072C /* SetPriorityDetailCell.swift in Sources */,
+				323BE5AF25A4915C003FF879 /* TeTextFieldDetailCell.swift in Sources */,
+				9513231A257295C60018DC2C /* DeleteTableCell.swift in Sources */,
 				323BE5A925A488D3003FF879 /* Colors.swift in Sources */,
 				958F792025818BD900CC02E9 /* saveButton.swift in Sources */,
 				9513230B25711F170018DC2C /* TodoItemsViewController.swift in Sources */,
-				951FD52825A49D6A00F4072C /* DatePickerTableCell.swift in Sources */,
+				951FD52825A49D6A00F4072C /* DatePickerDetailCell.swift in Sources */,
 				954FC7702576756C00402083 /* Date+Utils.swift in Sources */,
 				954C8FE0257F939B00A258F2 /* ButtonWithAction.swift in Sources */,
 				954C8FD8257E5D8700A258F2 /* ToDoItemTableCell.swift in Sources */,
 				323BE5AC25A48941003FF879 /* AddViewController.swift in Sources */,
 				951FD51C25A475E800F4072C /* Constants.swift in Sources */,
 				954C8FDD257F0B0B00A258F2 /* Color Ext.swift in Sources */,
-				9513231725728D670018DC2C /* ToDoItemDetailsViewController.swift in Sources */,
 				95659ABC25711B4A006B5FA8 /* AppDelegate.swift in Sources */,
 				9513230825711DCF0018DC2C /* TodoItem.swift in Sources */,
-				9555F87225AF972E0090C5E0 /* DateDetailCell.swift in Sources */,
 				951FD51F25A478F500F4072C /* Strings.swift in Sources */,
-				951FD52B25A49D8F00F4072C /* ColorPickerTableCell.swift in Sources */,
+				951FD52B25A49D8F00F4072C /* ColorPickerDetailCell.swift in Sources */,
 				951323122571237B0018DC2C /* Priority.swift in Sources */,
 				95659ABE25711B4A006B5FA8 /* SceneDelegate.swift in Sources */,
-				9555F87525AF97440090C5E0 /* PriorityDetailCell.swift in Sources */,
 				958F792725828F0500CC02E9 /* Text Ext.swift in Sources */,
 				9555F87825AF97580090C5E0 /* CompleteDetailCell.swift in Sources */,
 			);
